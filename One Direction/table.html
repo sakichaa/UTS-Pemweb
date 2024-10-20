@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Table</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #66181a; 
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            background-color: #66181a;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+        }
+
+        .sidebar img {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            background-color: #b33c3e;
+            margin-bottom: 10px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #cc3031;
+        }
+
+        /* Table Styles */
+        .table-responsive {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            background-color: #b33c3e; 
+            color: white;
+            border-collapse: collapse;
+            table-layout: auto;
+        }
+
+        .table th {
+            background-color: #cc3031; 
+            color: white;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #a62828; 
+        }
+
+        tbody tr:hover {
+            background-color: #cc3031;
+            color: white;
+        }
+
+        tbody td {
+            color: white; 
+        }
+
+        /* Column Drop Layout and Responsive Breakpoints */
+        .container-fluid {
+            height: 100vh; 
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-left: 200px;
+        }
+
+        @media (max-width: 992px) {
+            /* LG: Desain untuk Layar Besar */
+            .sidebar {
+                width: 180px;
+            }
+
+            main {
+                margin-left: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* MD: Desain untuk Layar Sedang (Tablet) */
+            .sidebar {
+                width: 150px;
+            }
+
+            main {
+                margin-left: 150px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* SM: Desain untuk Layar Kecil (Mobile Landscape) */
+            .sidebar {
+                width: 120px;
+            }
+
+            main {
+                margin-left: 120px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* XS: Desain untuk Layar Sangat Kecil (Mobile) */
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .container-fluid {
+                margin-left: 0;
+                padding-top: 20px;
+            }
+
+            main {
+                margin-left: 0;
+                width: 100%;
+                padding: 10px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body itemscope itemtype="https://schema.org/WebPage">
+
+    <!-- Bootstrap Container -->
+    <div class="container-fluid vh-100">
+        <div class="row w-100">
+            
+            <!-- Sidebar -->
+            <nav class="col-lg-2 col-md-3 col-sm-4 col-xs-12 bg-danger sidebar" itemprop="navigation">
+                <img src="Shoxha (1).png" class="img-fluid mb-4" alt="Logo">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="index.html">Homepage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Voting</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Current Voting</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Table Section -->
+            <main class="col-lg-10 col-md-9 col-sm-8 col-xs-12 d-flex justify-content-center align-items-center" itemprop="mainContentOfPage">
+                <div class="table-responsive mx-auto">
+                    <table class="table table-bordered" itemprop="table">
+                        <thead class="thead-dark sticky-header">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Country</th>
+                                <th>Soloist</th>
+                                <th>Group Band</th>
+                                <th>Date of Birth</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Data dummy akan dimasukkan ke sini oleh JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const dummyData = [
+        { no: 1, name: 'Isaiah Huang', gender: 'Female', country: 'Georgia', soloist: 'Louis Tomlinson', group_band: 'One Direction', dob: '1988-11-25' },
+        { no: 2, name: 'Melissa Moreno', gender: 'Male', country: 'Solomon Islands', soloist: 'Liam Payne', group_band: 'One Direction', dob: '2004-02-07' },
+        { no: 3, name: 'John Jensen', gender: 'Male', country: 'Nauru', soloist: 'Niall Horan', group_band: 'One Direction', dob: '1997-06-19' },
+        { no: 4, name: 'Warren Thompson', gender: 'Male', country: 'Sweden', soloist: 'Niall Horan', group_band: 'One Direction', dob: '1996-12-07' },
+        { no: 5, name: 'Ebony Dennis', gender: 'Female', country: 'Korea', soloist: 'Niall Horan', group_band: 'One Direction', dob: '1987-12-03' },
+        { no: 6, name: 'Edward Jackson', gender: 'Male', country: 'Togo', soloist: 'Niall Horan', group_band: 'One Direction', dob: '2001-03-02' },
+        { no: 7, name: 'Donald Garcia', gender: 'Female', country: 'Norway', soloist: 'Louis Tomlinson', group_band: 'One Direction', dob: '1983-12-22' },
+        { no: 8, name: 'Charles Vasquez', gender: 'Male', country: 'Estonia', soloist: 'Harry Styles', group_band: 'One Direction', dob: '1996-04-01' },
+        { no: 9, name: 'Courtney Carter', gender: 'Male', country: 'Netherlands Antilles', soloist: 'Harry Styles', group_band: 'One Direction', dob: '2003-03-26' },
+        { no: 10, name: 'Rachel Garcia', gender: 'Female', country: 'Kuwait', soloist: 'Zayn Malik', group_band: 'One Direction', dob: '2002-11-22' },
+        { no: 11, name: 'Aaron Watkins', gender: 'Male', country: 'Vatican City', soloist: 'Louis Tomlinson', group_band: 'One Direction', dob: '2000-10-20' },
+        { no: 12, name: 'Janet Kennedy', gender: 'Male', country: 'Sweden', soloist: 'Harry Styles', group_band: 'One Direction', dob: '1999-09-15' },
+        { no: 13, name: 'Jackie Clark', gender: 'Female', country: 'Brazil', soloist: 'Liam Payne', group_band: 'One Direction', dob: '1997-06-10' },
+        { no: 14, name: 'Alice Perry', gender: 'Male', country: 'Philippines', soloist: 'Louis Tomlinson', group_band: 'One Direction', dob: '1987-12-23' },
+        { no: 15, name: 'Nicole Franklin', gender: 'Female', country: 'Moldova', soloist: 'Harry Styles', group_band: 'One Direction', dob: '2005-05-13' },
+        { no: 16, name: 'Isaac Reyes', gender: 'Male', country: 'Monaco', soloist: 'Zayn Malik', group_band: 'One Direction', dob: '1990-07-09' },
+        { no: 17, name: 'Anna Jimenez', gender: 'Female', country: 'Finland', soloist: 'Harry Styles', group_band: 'One Direction', dob: '1993-03-15' },
+        { no: 18, name: 'Jason Jordan', gender: 'Male', country: 'Turkey', soloist: 'Liam Payne', group_band: 'One Direction', dob: '2004-05-21' },
+        { no: 19, name: 'Jordan Castillo', gender: 'Female', country: 'Switzerland', soloist: 'Niall Horan', group_band: 'One Direction', dob: '1997-11-07' },
+        { no: 20, name: 'Joshua Nichols', gender: 'Male', country: 'Ethiopia', soloist: 'Harry Styles', group_band: 'One Direction', dob: '1991-01-02' },
+        { no: 21, name: 'Dawn Reeves', gender: 'Female', country: 'Russia', soloist: 'Niall Horan', group_band: 'One Direction', dob: '1999-09-09' },
+        { no: 22, name: 'Crystal Boyd', gender: 'Male', country: 'Luxembourg', soloist: 'Louis Tomlinson', group_band: 'One Direction', dob: '2003-06-15' },
+        { no: 23, name: 'Jasmine Aguilar', gender: 'Female', country: 'Ireland', soloist: 'Liam Payne', group_band: 'One Direction', dob: '1998-11-26' },
+        { no: 24, name: 'Sarah Daniels', gender: 'Male', country: 'Greece', soloist: 'Harry Styles', group_band: 'One Direction', dob: '1988-01-21' },
+        { no: 25, name: 'Stephanie Phillips', gender: 'Female', country: 'Egypt', soloist: 'Niall Horan', group_band: 'One Direction', dob: '2001-12-18' },
+        { no: 26, name: 'Michael Reed', gender: 'Male', country: 'India', soloist: 'Liam Payne', group_band: 'One Direction', dob: '1996-04-08' },
+        { no: 27, name: 'Victoria Green', gender: 'Female', country: 'Canada', soloist: 'Zayn Malik', group_band: 'One Direction', dob: '2004-10-12' },
+        { no: 28, name: 'Brandon Torres', gender: 'Male', country: 'New Zealand', soloist: 'Louis Tomlinson', group_band: 'One Direction', dob: '1985-03-23' },
+        { no: 29, name: 'Megan Ward', gender: 'Female', country: 'Japan', soloist: 'Harry Styles', group_band: 'One Direction', dob: '2002-08-25' },
+        { no: 30, name: 'Melissa Berry', gender: 'Female', country: 'Australia', soloist: 'Louis Tomlinson', group_band: 'One Direction', dob: '2001-09-12' },
+        { no: 31, name: 'Ryan Torres', gender: 'Female', country: 'USA', soloist: 'Harry Styles', group_band: 'One Direction', dob: '1990-06-16' },
+        { no: 32, name: 'Andrea Stanley', gender: 'Female', country: 'France', soloist: 'Niall Horan', group_band: 'One Direction', dob: '2003-03-19' },
+        { no: 33, name: 'Amanda Roberts', gender: 'Male', country: 'Italy', soloist: 'Liam Payne', group_band: 'One Direction', dob: '2000-04-05' },
+        { no: 34, name: 'Gary Freeman', gender: 'Male', country: 'China', soloist: 'Harry Styles', group_band: 'One Direction', dob: '1994-11-13' },
+        { no: 35, name: 'Jeremy Murray', gender: 'Male', country: 'Mexico', soloist: 'Zayn Malik', group_band: 'One Direction', dob: '1986-01-22' },
+        { no: 36, name: 'Lori Russell', gender: 'Female', country: 'Denmark', soloist: 'Louis Tomlinson', group_band: 'One Direction', dob: '1992-12-11' },
+        { no: 37, name: 'Cameron Gray', gender: 'Male', country: 'South Korea', soloist: 'Liam Payne', group_band: 'One Direction', dob: '1991-10-23' },
+        { no: 38, name: 'Diana Ford', gender: 'Female', country: 'Spain', soloist: 'Zayn Malik', group_band: 'One Direction', dob: '1985-02-16' },
+        { no: 39, name: 'Ronald Morris', gender: 'Male', country: 'Czech Republic', soloist: 'Louis Tomlinson', group_band: 'One Direction', dob: '1988-08-01' },
+        { no: 40, name: 'Sean Martinez', gender: 'Male', country: 'Netherlands', soloist: 'Niall Horan', group_band: 'One Direction', dob: '2003-11-06' },
+        { no: 41, name: 'Emily Anderson', gender: 'Female', country: 'Israel', soloist: 'Harry Styles', group_band: 'One Direction', dob: '1994-04-24' },
+        { no: 42, name: 'Joseph Bell', gender: 'Male', country: 'Hungary', soloist: 'Liam Payne', group_band: 'One Direction', dob: '1999-07-18' },
+        { no: 43, name: 'Amanda Young', gender: 'Female', country: 'Argentina', soloist: 'Zayn Malik', group_band: 'One Direction', dob: '1993-12-27' },
+        { no: 44, name: 'Sara Adams', gender: 'Female', country: 'Croatia', soloist: 'Harry Styles', group_band: 'One Direction', dob: '2004-09-02' },
+        { no: 45, name: 'Amy Ramirez', gender: 'Female', country: 'Bulgaria', soloist: 'Liam Payne', group_band: 'One Direction', dob: '1996-08-20' },
+        { no: 46, name: 'Gregory Howard', gender: 'Male', country: 'Chile', soloist: 'Zayn Malik', group_band: 'One Direction', dob: '1990-03-09' },
+        { no: 47, name: 'Kenneth Cook', gender: 'Male', country: 'Algeria', soloist: 'Louis Tomlinson', group_band: 'One Direction', dob: '2005-10-07' },
+        { no: 48, name: 'Angela King', gender: 'Female', country: 'Germany', soloist: 'Niall Horan', group_band: 'One Direction', dob: '1999-01-17' },
+        { no: 49, name: 'Zachary Nelson', gender: 'Male', country: 'Belgium', soloist: 'Harry Styles', group_band: 'One Direction', dob: '1992-10-29' },
+        { no: 50, name: 'Jessica Morgan', gender: 'Female', country: 'Norway', soloist: 'Louis Tomlinson', group_band: 'One Direction', dob: '2002-03-05' }
+    ];
+
+        const tableBody = document.getElementById('tableBody');
+
+        dummyData.forEach(data => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${data.no}</td>
+                <td>${data.name}</td>
+                <td>${data.gender}</td>
+                <td>${data.country}</td>
+                <td>${data.soloist}</td>
+                <td>${data.group_band}</td>
+                <td>${data.dob}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

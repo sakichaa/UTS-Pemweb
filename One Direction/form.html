@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #cc3031;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .sidebar {
+            background-color: #66181a;
+            padding: 20px;
+            width: 200px;
+            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .sidebar img {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            background-color: #b33c3e;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .sidebar a:hover {
+            background-color: #cc3031;
+        }
+        .form-container {
+            margin-left: 220px;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .form-container form {
+            background-color: #9a2323;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .form-container form label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .form-container form input, 
+        .form-container form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #5c0f0f;
+            color: white;
+            font-size: 1em;
+        }
+        .form-container form input[type="submit"] {
+            background-color: #b33c3e;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-container form input[type="submit"]:hover {
+            background-color: #cc3031;
+        }
+        .form-container img {
+            width: 80%;
+            margin: 30px 0;
+            opacity: 0.2;
+        }
+
+        /* Responsive Layout */
+        /* LG: ≥ 992px (Layar besar - Desktop) */
+        @media (min-width: 992px) {
+            .form-container {
+                margin-left: 220px;
+            }
+        }
+
+        /* MD: ≥ 768px (Layar sedang - Tablet) */
+        @media (max-width: 991.98px) {
+            .sidebar {
+                width: 180px;
+            }
+            .form-container {
+                margin-left: 180px;
+            }
+        }
+
+        /* SM: ≥ 576px (Layar kecil - Mobile landscape) */
+        @media (max-width: 767.98px) {
+            .sidebar {
+                width: 150px;
+            }
+            .form-container {
+                margin-left: 150px;
+            }
+        }
+
+        /* XS: < 576px (Layar sangat kecil - Mobile) */
+        @media (max-width: 575.98px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+                margin-bottom: 20px;
+            }
+            .form-container {
+                margin-left: 0;
+                width: 100%;
+                padding: 10px;
+            }
+            .form-container form {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img src="Shoxha (1).png" alt="Logo">
+        <a href="#">Homepage</a>
+        <a href="#">Voting</a>
+        <a href="#">Current Voting</a>
+    </div>
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <h1>Choose your favorites</h1>
+        <form method="GET" action="submit.html">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="gender">Gender</label>
+            <input type="text" id="gender" name="gender" placeholder="Enter your gender" required>
+
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" placeholder="Enter your country" required>
+
+            <label for="group">Soloist/Group Band</label>
+            <input type="text" id="group" name="group" placeholder="Enter Soloist or Group Band" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+</html>
